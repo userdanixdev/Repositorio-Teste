@@ -1,4 +1,6 @@
 # Simulador Bancário:
+# Versão 01: 
+
 menu=""""
 [d]Depositar
 [s]Sacar
