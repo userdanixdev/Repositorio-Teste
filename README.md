@@ -4,4 +4,6 @@
 
 1. Criar repositorios
 2. Clonar repositorios ( git clone - "link do repositorio)
-3. Fazer alterações locais e enviar para o remoto 
+3. Fazer alterações locais e enviar para o remoto [Feito]
+4. Fazer uma branch - [Criei uma Branch para teste neste repositorio]
+5. 
