@@ -11,4 +11,5 @@
 4.3. Faça as alterações que quiser, não irá afetar em nada na branch principal 'main'
 4.4. Volte para a branch principal 'main' com git checkout main e faça um merge
 4.5. git merge nova_branch , depois git add ., git commit -m 'atualizações' e por fim git push origin main
+5. Pull Request - 
 
