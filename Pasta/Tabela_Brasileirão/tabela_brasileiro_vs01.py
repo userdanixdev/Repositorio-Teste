@@ -35,5 +35,7 @@ while True:
         print('O seu time não está na lista.')
 
         
+
+
       
 
