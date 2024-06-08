@@ -5,8 +5,6 @@
 
 from random import randint   # Método para randomizar números inteiros
 numeros= (randint(1,10),randint(1,10),randint(1,10),randint(1,10),randint(1,10))
-print(f'Os valores sorteados foram: {numeros}',end='')
-print(f'O maior valor sorteado foi: {max(numeros)}')
-print(f'\nO menor valor sorteado foi: {min(numeros)}')
-
-
+for n in numeros:
+    print(f'Os números sorteados foram: {n}')
+print(f'O maior número foi: {max(numeros)}\ne o menor foi: {min(numeros)}\nAté mais.')    
