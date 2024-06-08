@@ -24,6 +24,6 @@ def main():
     vendas_imoveis_total = float(input('Me informe o valor total de vendas:  '))
 
     salario_final = calculo_salario_corretor(nome_corretor,quant_imovel,vendas_imoveis_total)
-    print(f'O salário final do corretor {nome_corretor} foir de R$ {salario_final:.2f} reais.')
+    print(f'O salário final do corretor {nome_corretor} foi de R$ {salario_final:.2f} reais.')
 
 main()
