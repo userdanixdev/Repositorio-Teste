@@ -39,10 +39,12 @@ print(f'{'+'*30}\n{"Quantas partidas":^30}\n{"QTD GOLS":^30}\n{'+'*30}')
 sleep(2)    
 for k,v in enumerate(gols):
     sleep(0.7)
-    print('Na partida {k+1}, fez {v} gols.')
+    print(f'Na partida {k+1}, fez {v} gols.')
 sleep(0.5)
 print(f'Total de {jogador["Total"]} gols.')    
 print(f'Média de gols por partida: {media_gols:.2f}.')
+
+
 
                          
 
