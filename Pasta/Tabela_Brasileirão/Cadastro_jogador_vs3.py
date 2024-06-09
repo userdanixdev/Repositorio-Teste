@@ -44,4 +44,4 @@ print()
 print(f'O jogador {jogador["Nome"]} tem {partidas} partidas.')
 for c in range(0,partidas):
     print(f'Na partida {c+1} fez {jogador["Gols"][c]}')
-print(f'Fez um total fez {jogador["Total"]} gols.')    
+print(f'Fez um total de {jogador["Total"]} gols.')    
