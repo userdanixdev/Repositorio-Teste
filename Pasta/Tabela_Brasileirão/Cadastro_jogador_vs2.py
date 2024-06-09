@@ -21,7 +21,7 @@ print(f'{'='*70}\n{jogador}\n{'='*70}')
 for k,v in jogador.items():
     print(f'O campo {k} tem o valor {v}.')
 print()
-print(f'O jogador {jogador["Nome"]} tem {jogador["Partidas"]} partidas.\n')    
+print(f'O jogador {jogador["Nome"]} fez {jogador["Partidas"]} partidas.\n')    
 #print()
 # Mostrar o total de partidas e total de gols:
 for c in range (0,jogador['Partidas']):
