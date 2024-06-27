@@ -94,3 +94,6 @@ def main():
         print(f"\nSentimento para as músicas de {artist}:")
         for song, sentiment in songs.items():
             print(f"{song}: {sentiment}")
+
+if __name__=='__main__':
+    main()            
