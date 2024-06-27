@@ -62,7 +62,7 @@ def analyse_sentiment(lyrics_data):
     return sentiment_data            
 
 # Função principal para coletar letras de músicas e analisar o sentimento:
-def main():
+def collect_lyrics():
     print("Busca de letras de Músicas : Análise de Sentimentos")
     while True:
             artist = input('Digite o nome da banda/artista: ').strip()
@@ -79,6 +79,8 @@ def main():
             continuar = input('Deseja buscar outra letra? [S/N]: ').strip().lower()
             if continuar != 's':
                 break
+
+def load_and_analyze_lyrics():            
     # Carregar os dados das letras de músicas:
     current_dir = os.path.dirname(os.path.abspath(__file__))
     lyrics_dir = os.path.join(current_dir,'lyrics')
@@ -95,5 +97,31 @@ def main():
         for song, sentiment in songs.items():
             print(f"{song}: {sentiment}")
 
+def menu():
+    while True:
+        try:
+            menu='''
+            +++++ MENU +++++
+            [1] -\t Coletar letras
+            [2] -\t Carrega letras e analisar sentimento
+            [3] -\t Sair
+            \nEscolha:
+                  '''
+            opcoes = int(input(menu))
+            if opcoes == 1:
+                collect_lyrics()
+            elif opcoes == 2:
+                load_and_analyze_lyrics()
+            elif opcoes == 3:
+                print('Saindo...')
+                break
+            else:
+                print('Opção inválida. Escolha um número de 1 a 3 ')    
+        except ValueError:
+            print('Opção inválida. Insira somente números inteiros.')
+     
+  
+
+
 if __name__=='__main__':
-    main()            
+    menu()            
