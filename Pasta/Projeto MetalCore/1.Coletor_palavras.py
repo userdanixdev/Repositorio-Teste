@@ -81,3 +81,5 @@ if __name__ == '__main__':
 # O programa fará uma solicitação à API Lyrics.ovh e, se encontrar a letra da música,
 #  exibirá a letra no console. Se não encontrar, mostrará uma mensagem de erro.
 
+
+
