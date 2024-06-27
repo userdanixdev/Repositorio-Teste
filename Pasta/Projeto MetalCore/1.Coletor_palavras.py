@@ -57,10 +57,6 @@ def main():
         if not artist or not title:
             print("Artista e título da música são obrigatórios!")
             continue
-# Exemplo de uso:
-#artist = "Architects"
-#title = "Doomsday"
-
         lyrics = get_lyrics(artist, title)
         if lyrics:
             print(f"Letra de '{title}' por {artist}:\n{lyrics}")
