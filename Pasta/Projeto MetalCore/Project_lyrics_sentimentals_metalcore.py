@@ -1,6 +1,7 @@
 import requests
 import os
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from time import sleep
 
 # Primeiro a função para obter as letras das músicas através de uma API Lyrics.ovh:
 # Essa API não precisa de autenticação
@@ -80,15 +81,17 @@ def collect_lyrics():
             if continuar != 's':
                 break
 
-def load_and_analyze_lyrics():            
+def prepare_lyrics():            
     # Carregar os dados das letras de músicas:
     current_dir = os.path.dirname(os.path.abspath(__file__))
     lyrics_dir = os.path.join(current_dir,'lyrics')
     lyrics_data = load_lyrics(lyrics_dir)
     if not lyrics_data:
         print("Nenhuma letra foi carregada. Verifique se o diretório lyrics existe mesmo,talvez esteja no lugar errado.")                                           
-        return
- 
+        return None
+    return lyrics_data
+    
+def analysis_lyrics(lyrics_data):
     # Analisar o sentimento das letras de músicas:
     sentiment_data = analyse_sentiment(lyrics_data)
     # Mostrar o resultado de sentimento para todas as músicas:
@@ -101,27 +104,32 @@ def menu():
     while True:
         try:
             menu='''
-            +++++ MENU +++++
-            [1] -\t Coletar letras
-            [2] -\t Carrega letras e analisar sentimento
-            [3] -\t Sair
-            \nEscolha:
-                  '''
+            +++++++++++ MENU +++++++++++
+            [1] - Coletar letras
+            [2] - Carrega letras 
+            [3] - Analise de Sentimento
+            [4] - Sair
+            \nEscolha:                  '''
             opcoes = int(input(menu))
             if opcoes == 1:
                 collect_lyrics()
             elif opcoes == 2:
-                load_and_analyze_lyrics()
+                lyrics_data=  prepare_lyrics()
+                for c in range(3):
+                    print(".",end='',flush=True)
+                    sleep(1)
+                print('Carregando dados\n\nAs letras estão prontas para serem avaliadas.')
             elif opcoes == 3:
+                if lyrics_data:
+                    analysis_lyrics(lyrics_data)                
+            elif opcoes == 4:
                 print('Saindo...')
                 break
             else:
-                print('Opção inválida. Escolha um número de 1 a 3 ')    
+                print('Opção inválida. Escolha um número de 1 a 4. ')    
         except ValueError:
             print('Opção inválida. Insira somente números inteiros.')
      
-  
-
 
 if __name__=='__main__':
     menu()            
