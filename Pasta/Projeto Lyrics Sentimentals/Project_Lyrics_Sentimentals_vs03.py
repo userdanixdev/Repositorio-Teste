@@ -62,7 +62,7 @@ def collect_lyrics(lyrics_dict):
     dots_()
     while True:
         artist = input('Digite o nome da banda/artista: ').strip()
-        title = input('Digite o título da música: ').strip()
+        title = input('Digite o título da música: ').strip().capitalize()
         if not artist or not title:
             print('Artista e título são obrigatórios.')     
             continue
@@ -107,12 +107,12 @@ def analysis_lyrics(lyrics_data):
     return True
 
 def dots_():
-    for c in range(4):
+    for c in range(3):
         print(".",end='',flush=True)
         time.sleep(1)
 
 def dots():
-    for c in range(4):
+    for c in range(3):
         print(".",end='',flush=True)
         time.sleep(1)
     return print('\nCarregando dados\n\nAs letras estão prontas para serem avaliadas.')
@@ -135,6 +135,8 @@ def menu():
                 collect_lyrics(lyrics_dict)
             elif opcoes == 2:
                 lyrics_data = load_lyrics(lyrics_dict)
+                if lyrics_data:
+                    dots()
             elif opcoes == 3:
                 delete_lyrics(lyrics_dict)
             elif opcoes == 4:
