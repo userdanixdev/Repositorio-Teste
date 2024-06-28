@@ -171,8 +171,8 @@ def menu():
                 if lyrics_data:
                     analysis_lyrics(lyrics_data)   
                 else: 
-                    print('Carregue as letras antes de analisar o sentimento')                                              
-            elif opcoes == 4:
+                    print('\nSempre carregue as letras antes de analisar o sentimento.')                                              
+            elif opcoes == 5:
                 print('Saindo...')
                 break
             else:
