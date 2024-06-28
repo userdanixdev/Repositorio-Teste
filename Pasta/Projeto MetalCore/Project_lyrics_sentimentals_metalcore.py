@@ -115,10 +115,10 @@ def menu():
                 collect_lyrics()
             elif opcoes == 2:
                 lyrics_data=  prepare_lyrics()
-                for c in range(3):
+                for c in range(4):
                     print(".",end='',flush=True)
                     sleep(1)
-                print('Carregando dados\n\nAs letras estão prontas para serem avaliadas.')
+                print('\nCarregando dados\n\nAs letras estão prontas para serem avaliadas.')
             elif opcoes == 3:
                 if lyrics_data:
                     analysis_lyrics(lyrics_data)                
