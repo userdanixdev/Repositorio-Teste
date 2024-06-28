@@ -87,18 +87,57 @@ def prepare_lyrics():
     lyrics_dir = os.path.join(current_dir,'lyrics')
     lyrics_data = load_lyrics(lyrics_dir)
     if not lyrics_data:
-        print("Nenhuma letra foi carregada. Verifique se o diretório lyrics existe mesmo,talvez esteja no lugar errado.")                                           
-        return None
+        print("Nenhuma letra foi carregada. \nVerifique se o diretório lyrics existe mesmo,talvez esteja no lugar errado.\nOu foi deletado.")                                           
+        return False
     return lyrics_data
+
+def dots():
+    for c in range(4):
+        print(".",end='',flush=True)
+        sleep(1)
+    return print('\nCarregando dados\n\nAs letras estão prontas para serem avaliadas.')
+
     
 def analysis_lyrics(lyrics_data):
+    # Verificar se há letras para analisar:
+    if not lyrics_data:
+        print('Nenhuma letra carregada no momento')
+        return False
     # Analisar o sentimento das letras de músicas:
-    sentiment_data = analyse_sentiment(lyrics_data)
+    analyser = SentimentIntensityAnalyzer()
+    sentiment_data = {}
+    # Mostrar o resultado de sentimento para todas as músicas:
+    for artist, songs in lyrics_data.items():
+        sentiment_data[artist] = {}
+        for song, lyrics in songs.items():
+            sentiment = analyser.polarity_scores(lyrics)
+            sentiment_data[artist][song] = sentiment
     # Mostrar o resultado de sentimento para todas as músicas:
     for artist, songs in sentiment_data.items():
         print(f"\nSentimento para as músicas de {artist}:")
         for song, sentiment in songs.items():
-            print(f"{song}: {sentiment}")
+            print(f"{song}: {sentiment}")            
+
+# Função para deletar as letras das músicas:
+def delete_lyrics():
+    current_dir = os.path.dirname(os.path.abspath(__file__))            
+    lyrics_dir = os.path.join(current_dir,'lyrics')
+    if os.path.exists(lyrics_dir):
+        for artist in os.listdir(lyrics_dir):
+            artist_dir = os.path.join(lyrics_dir,artist)
+            if os.path.isdir(artist_dir):
+                for song_file in os.listdir(artist_dir):
+                    file_path = os.path.join(artist_dir,song_file)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+                        print(f"{file_path} foi deletado.")
+                os.rmdir(artist_dir)
+                print(f"{artist_dir} foi deletado")                        
+        os.rmdir(lyrics_dir)
+        print(f"{artist_dir} foi deletado")                                                    
+    else:
+        print("Nenhum diretório de letras encontrado para deletar.")        
+
 
 def menu():
     while True:
@@ -107,21 +146,25 @@ def menu():
             +++++++++++ MENU +++++++++++
             [1] - Coletar letras
             [2] - Carrega letras 
-            [3] - Analise de Sentimento
-            [4] - Sair
-            \nEscolha:                  '''
+            [3] - Deletar letras
+            [4] - Analise de Sentimento
+            [5] - Sair
+            \nEscolha:  '''
             opcoes = int(input(menu))
             if opcoes == 1:
                 collect_lyrics()
             elif opcoes == 2:
                 lyrics_data=  prepare_lyrics()
-                for c in range(4):
-                    print(".",end='',flush=True)
-                    sleep(1)
-                print('\nCarregando dados\n\nAs letras estão prontas para serem avaliadas.')
+                if prepare_lyrics():
+                    dots()                
             elif opcoes == 3:
+                delete_lyrics()
+            elif opcoes == 4:
+                lyrics_data = analysis_lyrics(lyrics_data)
                 if lyrics_data:
-                    analysis_lyrics(lyrics_data)                
+                    analysis_lyrics(lyrics_data)   
+                else: 
+                    print('Carregue as letras antes de analisar o sentimento')                                              
             elif opcoes == 4:
                 print('Saindo...')
                 break
