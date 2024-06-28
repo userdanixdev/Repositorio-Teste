@@ -103,7 +103,29 @@ def dots_():
         print(".",end='',flush=True)
         sleep(1)
 
+def analysis_lyrics_2(lyrics_data):        
 
+    # Verifica se há letras para analisar:
+    if not lyrics_data:
+        print('Nehuma letra carregada no momento ')
+        return False
+    # Analise do sentimento:
+    sentiment_data = analyse_sentiment(lyrics_data)
+    # Mostrar o resultado do sentimento de todas as músicas:
+    for artist,songs in sentiment_data.items():
+        print(f'\nSentimento para as músicas de {artist}:')
+        for song,sentiment in songs.items():
+            neg_percent = sentiment['neg']*100
+            pos_percent = sentiment['pos']*100
+            neu_percent = sentiment['neu']*100
+            compound_score = sentiment['compound']
+            print(f"{song}:")
+            print(f" Negativo: {neg_percent:.2f}{"%"}")
+            print(f" Positivo: {pos_percent:.2f}{"%"}")
+            print(f" Neutro: {neu_percent:.2f}{"%"}")
+            print(f" Compound: {compound_score:.4f}")
+    #return True    
+    return lyrics_data        
     
 def analysis_lyrics(lyrics_data):
     # Verificar se há letras para analisar:
@@ -155,7 +177,8 @@ def menu():
             [2] - Carrega letras 
             [3] - Deletar letras
             [4] - Analise de Sentimentos
-            [5] - Sair
+            [5] - Analise de Sentimentos 2
+            [6] - Sair
             \nEscolha:  '''
             opcoes = int(input(menu))
             if opcoes == 1:
@@ -168,11 +191,17 @@ def menu():
                 delete_lyrics()
             elif opcoes == 4:
                 lyrics_data = analysis_lyrics(lyrics_data)
-                if lyrics_data:
-                    analysis_lyrics(lyrics_data)   
-                else: 
-                    print('\nSempre carregue as letras antes de analisar o sentimento.')                                              
+                #if lyrics_data:
+                 #   analysis_lyrics(lyrics_data)   
+                #else: 
+                 #   print('\nSempre carregue as letras antes de analisar o sentimento.')   
             elif opcoes == 5:
+                lyrics_data = analysis_lyrics_2(lyrics_data)
+                #if lyrics_data:
+                #    analysis_lyrics_2(lyrics_data)
+                #else:
+                #    print('\nSempre carregue as letras antes de analisar o sentimento.')                                                                                                          
+            elif opcoes == 6:
                 print('Saindo...')
                 break
             else:
