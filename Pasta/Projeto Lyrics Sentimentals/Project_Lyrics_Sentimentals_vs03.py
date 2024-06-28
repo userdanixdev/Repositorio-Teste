@@ -35,8 +35,8 @@ def save_lyrics(lyrics_dict,artist,title,lyrics):
 # Função para carregar as letras das músicas salvas no dicionário:
 def load_lyrics(lyrics_dict):
 
-
     if lyrics_dict:
+        dots()
         print('Letras carregadas com sucesso.')
     elif not lyrics_dict:
         print('Nenhuma letra foi carregada.')    
@@ -61,7 +61,7 @@ def collect_lyrics(lyrics_dict):
     print(f"{"+"*30}\n{"Busca de letras de Músicas": ^29}\n{"Análise de Sentimentos":^28}\n{"+"*30}")
     dots_()
     while True:
-        artist = input('Digite o nome da banda/artista: ').strip()
+        artist = input('Digite o nome da banda/artista: ').strip().capitalize()
         title = input('Digite o título da música: ').strip().capitalize()
         if not artist or not title:
             print('Artista e título são obrigatórios.')     
@@ -99,10 +99,10 @@ def analysis_lyrics(lyrics_data):
             neu_percent = sentiment['neu']*100
             compound_score = sentiment['compound']
             print(f"{song}:")
-            print(f" Negativo: {neg_percent:.2f}%")
-            print(f" Positivo: {pos_percent:.2f}%")
-            print(f" Neutro:   {neu_percent:.2f}%")
-            print(f" Compound: {compound_score:.4f}")
+            print(f" Negatividade: {neg_percent:.2f}% - Proporção de palavras negativas na letra.")
+            print(f" Positividade: {pos_percent:.2f}% - Proporção de palavras positivas na letra.")
+            print(f" Neutralidade: {neu_percent:.2f}%- Proporção de palavras neutras na letra.")
+            print(f" Compound: {compound_score:.4f}- Métrica geral da letra: Próximo de 1 indica sentimento positivo forte\n Próximo de -1 indica sentimento negativo forte.\n Score próximo de 0 indica um sentimento neutro. ")
 
     return True
 
@@ -135,8 +135,7 @@ def menu():
                 collect_lyrics(lyrics_dict)
             elif opcoes == 2:
                 lyrics_data = load_lyrics(lyrics_dict)
-                if lyrics_data:
-                    dots()
+                
             elif opcoes == 3:
                 delete_lyrics(lyrics_dict)
             elif opcoes == 4:
