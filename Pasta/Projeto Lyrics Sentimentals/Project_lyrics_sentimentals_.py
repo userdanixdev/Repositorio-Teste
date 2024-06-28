@@ -64,7 +64,8 @@ def analyse_sentiment(lyrics_data):
 
 # Função principal para coletar letras de músicas e analisar o sentimento:
 def collect_lyrics():
-    print("Busca de letras de Músicas : Análise de Sentimentos")
+    print(f"{"+"*30}\n{"Busca de letras de Músicas": ^29}\n{"Análise de Sentimentos":^28}\n{"+*30"}")
+    dots()
     while True:
             artist = input('Digite o nome da banda/artista: ').strip()
             title = input('Digite o título da música: ').strip()
